@@ -1,0 +1,26 @@
+{
+  "name": "grunt-jsx",
+  "version": "0.0.0",
+  "description": "Gruntfile for JSX",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": "",
+  "keywords": [
+    "grunt",
+    "jsx",
+    "gruntplugin",
+    "compiler"
+  ],
+  "dependencies": {
+    "jsx": "~0.9.x"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-jshint": "~0.6.0"
+  },
+  "author": "yosuke-furukawa",
+  "license": "MIT"
+}
