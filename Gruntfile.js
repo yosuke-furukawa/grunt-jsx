@@ -29,7 +29,26 @@ module.exports = function(grunt) {
     jsx: {
       client: {
         src: 'examples/hello.jsx',
-        output: 'tmp/hello.jsx.js'
+        dest: 'tmp/hello.jsx.js',
+      },
+      server: {
+        src: 'examples/hello.jsx',
+        dest: 'tmp/hello.node.jsx.js',
+        executable: 'node',
+      },
+      release: {
+        src: 'examples/hello.jsx',
+        dest: 'tmp/hello.release.jsx.js',
+        executable: 'node',
+        release: true,
+      },
+      notfound: {
+        src: 'examples/notfound.jsx',
+        dest: 'tmp/notfound.jsx.js',
+      },
+      import_demo: {
+        src: 'examples/import.jsx',
+        dest: 'tmp/import.jsx.js',
       }
     }
   });

@@ -4,34 +4,30 @@ module.exports = function(grunt) {
   var _ = grunt.util._;
   grunt.registerMultiTask('jsx', 'Compile JSX file to JavaScript', function() {
     var done = this.async();
-    console.log(this.options);
-    console.log(this.target);
-    var options = this.options({
-      sourceRoot: "./",
-      output: "",
-      jsx_opts: "",
-    });
-
-    console.log(options);
-    console.log(this.files);
-    var files = this.filesSrc;
-
-    files.forEach(function(f) {
-      console.log(f);
-      compileJsx(f, options.jsx_opts, function(error, result) {
-        if (error) {
-          console.error(error);
-          return;
+    this.files.forEach(function(file) {
+      if (file.src.length < 1) {
+        grunt.log.error("no files");
+      }
+      var existFiles = file.src.filter(function(filepath) {
+        if (!grunt.file.exists(filepath)) {
+          grunt.log.warn('Source file "' + filepath + '" not found.');
+          return false;
+        } else {
+          return true;
         }
-        var stderr = result.stderr;
-        if (stderr) {
-          console.error(stderr);
-          return;
-        }
-        var code = result.code;
-        var output = result.stdout;
-        console.log(result);
+      });
 
+      existFiles.map(function(filepath) {
+        compileJsx(
+          filepath,
+          {
+            output: file.dest,
+            executable: file.executable,
+            release: file.release
+          },
+          function(error, result, code) {
+            done(!code);
+          });
       });
     });
 
@@ -40,27 +36,19 @@ module.exports = function(grunt) {
   var compileJsx = function (file, opts, callback) {
     if (!file) {
       grunt.log.warn('Source file is undefiend.');
-      callback("No file", null);
+      callback("No file", null, 1);
     }
-    if (!callback && typeof(opts) === "function") {
-      callback = opts;
-    }
-    grunt.util.spawn({
-      cmd: 'jsx',
-      args: [file]
+    var args = [];
+    _.each(opts, function(value, key) {
+      if(value && value !== true) args.push("--"+key, value);
+      else if(value === true) args.push("--"+key);
+    });
+    args.push(file);
+    var jsx = grunt.util.spawn({
+      cmd: './node_modules/jsx/bin/jsx',
+      args: args
     }, callback);
-  };
-  
-  var warnOnEmptyFile = function (path) {
-    grunt.log.warn('Destination (' + path + ') not written because compiled files were empty.');
-  };
-
-  var writeFile = function (path, output) {
-    if (output.length < 1) {
-      warnOnEmptyFile(path);
-    } else {
-      grunt.file.write(path, output);
-      grunt.log.writeln('File ' + path + ' created.');
-    }
+    jsx.stdout.pipe(process.stdout);
+    jsx.stderr.pipe(process.stderr);
   };
 };
