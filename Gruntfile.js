@@ -42,6 +42,11 @@ module.exports = function(grunt) {
         executable: 'node',
         release: true,
       },
+      add_search_path: {
+        src: 'examples/import.jsx',
+        dest: 'tmp/import.jsx.js',
+        "add-search-path": 'examples/',
+      },
       notfound: {
         src: 'examples/notfound.jsx',
         dest: 'tmp/notfound.jsx.js',

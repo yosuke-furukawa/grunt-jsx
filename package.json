@@ -1,12 +1,12 @@
 {
   "name": "grunt-jsx",
-  "version": "0.0.0",
+  "version": "0.0.0-1",
   "description": "Gruntfile for JSX",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "mocha test"
   },
-  "repository": "",
+  "repository": "git://github.com/yosuke-furukawa/grunt-jsx",
   "keywords": [
     "grunt",
     "jsx",

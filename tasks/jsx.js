@@ -23,7 +23,8 @@ module.exports = function(grunt) {
           {
             output: file.dest,
             executable: file.executable,
-            release: file.release
+            release: file.release,
+            "add-search-path": file["add-search-path"]
           },
           function(error, result, code) {
             done(!code);
@@ -44,8 +45,9 @@ module.exports = function(grunt) {
       else if(value === true) args.push("--"+key);
     });
     args.push(file);
+    console.log(args);
     var jsx = grunt.util.spawn({
-      cmd: './node_modules/jsx/bin/jsx',
+      cmd: 'jsx',
       args: args
     }, callback);
     jsx.stdout.pipe(process.stdout);

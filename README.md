@@ -43,4 +43,9 @@ Task targets, files and options may be specified according to the grunt [Configu
         executable: 'node',
         release: true,
       },
+      add_search_path: {
+        src: 'examples/import.jsx',
+        dest: 'tmp/import.jsx.js',
+        "add-search-path": 'examples/',
+      },
 ```
