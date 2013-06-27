@@ -45,7 +45,6 @@ module.exports = function(grunt) {
       else if(value === true) args.push("--"+key);
     });
     args.push(file);
-    console.log(args);
     var jsx = grunt.util.spawn({
       cmd: 'jsx',
       args: args
