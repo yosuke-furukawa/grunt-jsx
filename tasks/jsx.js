@@ -41,7 +41,16 @@ module.exports = function(grunt) {
     }
     var args = [];
     _.each(opts, function(value, key) {
-      if(value && value !== true) args.push("--"+key, value);
+      if(value && value !== true) {
+        if (_.isArray(value)) {
+          _.each(value, function(v) {
+            args.push("--"+key, v);
+          });
+        }
+        else {
+          args.push("--"+key, value);
+        }
+      }
       else if(value === true) args.push("--"+key);
     });
     args.push(file);
