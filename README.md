@@ -51,3 +51,10 @@ Task targets, files and options may be specified according to the grunt [Configu
         "add-search-path": 'examples/',
       },
 ```
+
+```shell
+$ grunt jsx:client // jsx --output tmp/hello.jsx.js examples/hello.jsx
+$ grunt jsx:server // jsx --executable node --output tmp/hello.node.jsx.js examples/hello.jsx
+$ grunt jsx:release // jsx --executable node --release --output tmp/hello.node.jsx.js examples/hello.jsx
+$ grunt jsx:add_search_path // jsx --add-search-path examples/ --output tmp/hello.node.jsx.js examples/hello.jsx
+```
