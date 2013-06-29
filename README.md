@@ -1,4 +1,6 @@
 # grunt-jsx
+[![Build status](https://api.travis-ci.org/yosuke-furukawa/grunt-jsx.png)](https://travis-ci.org/yosuke-furukawa/grunt-jsx)
+
 
 > Compile JSX to Javascript
 
