@@ -26,48 +26,52 @@ module.exports = function(grunt) {
         tasks: ['jshint:jsx']
       }
     },
+    clean: {
+      tests: ['tmp/']
+    },
+    checkfile: {
+      test: {
+        actuals: 'tmp/*.js',
+        expected: 'fixtures/expected/*.js'
+      }
+    },
     jsx: {
       client: {
-        src: 'examples/hello.jsx',
+        src: 'fixtures/hello.jsx',
         dest: 'tmp/hello.jsx.js',
       },
       server: {
-        src: 'examples/hello.jsx',
+        src: 'fixtures/hello.jsx',
         dest: 'tmp/hello.node.jsx.js',
         executable: 'node',
       },
       release: {
-        src: 'examples/hello.jsx',
+        src: 'fixtures/hello.jsx',
         dest: 'tmp/hello.release.jsx.js',
         executable: 'node',
         release: true,
       },
       add_search_path: {
-        src: 'examples/import.jsx',
+        src: 'fixtures/import.jsx',
         dest: 'tmp/import.jsx.js',
-        "add-search-path": 'examples/',
+        "add-search-path": 'fixtures/',
       },
       add_search_path_arr: {
-        src: 'examples/import.jsx',
+        src: 'fixtures/import.jsx',
         dest: 'tmp/import2.jsx.js',
-        "add-search-path": ['examples/', 'examples2/'],
+        "add-search-path": ['fixtures/', 'fixtures2/'],
       },
-      notfound: {
-        src: 'examples/notfound.jsx',
-        dest: 'tmp/notfound.jsx.js',
-      },
-      import_demo: {
-        src: 'examples/import.jsx',
-        dest: 'tmp/import.jsx.js',
-      }
     }
   });
   grunt.loadTasks('tasks');
 
+  grunt.loadTasks('test');
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task.
+  grunt.registerTask('test', ['clean', 'jsx', 'checkfile']);
   grunt.registerTask('default', ['jshint', 'watch']);
 };
