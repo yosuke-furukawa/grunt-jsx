@@ -27,25 +27,38 @@ Task targets, files and options may be specified according to the grunt [Configu
 ### Usage example
 
 ```js
-    jsx: {
-      client: {
-        src: 'examples/hello.jsx',
-        dest: 'tmp/hello.jsx.js',
-      },
-      server: {
-        src: 'examples/hello.jsx',
-        dest: 'tmp/hello.node.jsx.js',
-        executable: 'node',
-      },
-      release: {
-        src: 'examples/hello.jsx',
-        dest: 'tmp/hello.release.jsx.js',
-        executable: 'node',
-        release: true,
-      },
-      add_search_path: {
-        src: 'examples/import.jsx',
-        dest: 'tmp/import.jsx.js',
-        "add-search-path": 'examples/',
-      },
+  module.exports = function(grunt) {
+    grunt.initConfig({
+      jsx: {
+        client: {
+          src: 'examples/hello.jsx',
+          dest: 'tmp/hello.jsx.js',
+        },
+        server: {
+          src: 'examples/hello.jsx',
+          dest: 'tmp/hello.node.jsx.js',
+          executable: 'node',
+        },
+        release: {
+          src: 'examples/hello.jsx',
+          dest: 'tmp/hello.release.jsx.js',
+          executable: 'node',
+          release: true,
+        },
+        add_search_path: {
+          src: 'examples/import.jsx',
+          dest: 'tmp/import.jsx.js',
+          "add-search-path": ['examples/'],
+        },
+      }
+    });
+    grunt.loadNpmTasks('grunt-jsx');
+  };
+```
+
+```shell
+$ grunt jsx:client // jsx --output tmp/hello.jsx.js fixtures/hello.jsx
+$ grunt jsx:server // jsx --output tmp/hello.node.jsx.js --executable node fixtures/hello.jsx
+$ grunt jsx:release // jsx --output tmp/hello.release.jsx.js --executable node --release fixtures/hello.jsx
+$ grunt jsx:add_search_path // jsx --output tmp/import.jsx.js --add-search-path fixtures/ fixtures/import.jsx
 ```
