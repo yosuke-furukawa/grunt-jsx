@@ -7,8 +7,11 @@ module.exports = function(grunt) {
     var actual = grunt.file.read(pathToActual).replace(/\/\/.+\n/g, "");
     // remove error message,
     actual = actual.replace(/Error\(".+?"/g, 'Error\(""');
+    actual = actual.replace(/".+?"/g, '""');
     var expected = grunt.file.read(pathToExpected).replace(/\/\/.+\n/g, "");
     expected = expected.replace(/Error\(".+?"/g, 'Error\(""');
+    expected = expected.replace(/".+?"/g, '""');
+    console.log(pathToActual, pathToExpected);
     expect(actual).to.eql(expected);
   }
   grunt.registerMultiTask('checkfile', 'check equality', function() { 
