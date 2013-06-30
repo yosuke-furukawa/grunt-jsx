@@ -1,4 +1,6 @@
 # grunt-jsx
+[![Build status](https://api.travis-ci.org/yosuke-furukawa/grunt-jsx.png)](https://travis-ci.org/yosuke-furukawa/grunt-jsx)
+
 
 > Compile JSX to Javascript
 
@@ -61,4 +63,11 @@ $ grunt jsx:client // jsx --output tmp/hello.jsx.js fixtures/hello.jsx
 $ grunt jsx:server // jsx --output tmp/hello.node.jsx.js --executable node fixtures/hello.jsx
 $ grunt jsx:release // jsx --output tmp/hello.release.jsx.js --executable node --release fixtures/hello.jsx
 $ grunt jsx:add_search_path // jsx --output tmp/import.jsx.js --add-search-path fixtures/ fixtures/import.jsx
+```
+
+```shell
+$ grunt jsx:client // jsx --output tmp/hello.jsx.js examples/hello.jsx
+$ grunt jsx:server // jsx --executable node --output tmp/hello.node.jsx.js examples/hello.jsx
+$ grunt jsx:release // jsx --executable node --release --output tmp/hello.node.jsx.js examples/hello.jsx
+$ grunt jsx:add_search_path // jsx --add-search-path examples/ --output tmp/hello.node.jsx.js examples/hello.jsx
 ```
