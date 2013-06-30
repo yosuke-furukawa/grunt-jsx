@@ -50,7 +50,7 @@ Task targets, files and options may be specified according to the grunt [Configu
         add_search_path: {
           src: 'examples/import.jsx',
           dest: 'tmp/import.jsx.js',
-          "add-search-path": ['examples/'],
+          add_search_path: ['examples/'],
         },
       }
     });

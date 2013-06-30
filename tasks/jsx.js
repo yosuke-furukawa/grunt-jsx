@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             output: file.dest,
             executable: file.executable,
             release: file.release,
-            "add-search-path": file["add-search-path"]
+            "add-search-path": file.add_search_path
           },
           function(error, result, code) {
             if (!error) {
