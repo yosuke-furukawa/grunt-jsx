@@ -27,6 +27,9 @@ module.exports = function(grunt) {
             "add-search-path": file["add-search-path"]
           },
           function(error, result, code) {
+            if (!error) {
+              grunt.verbose.ok();
+            }
             done(!code);
           });
       });
@@ -54,6 +57,12 @@ module.exports = function(grunt) {
       else if(value === true) args.push("--"+key);
     });
     args.push(file);
+    grunt.verbose.write('jsx');
+    _.each(args, function(arg) {
+      grunt.verbose.write(' ');
+      grunt.verbose.write(arg);
+    });
+    grunt.verbose.writeln();
     var jsx = grunt.util.spawn({
       cmd: 'jsx',
       args: args
