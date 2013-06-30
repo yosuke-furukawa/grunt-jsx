@@ -61,6 +61,52 @@ module.exports = function(grunt) {
         dest: 'tmp/import2.jsx.js',
         add_search_path: ['fixtures/', 'fixtures2/'],
       },
+      minify: {
+        src: 'fixtures/fizzbuzz.jsx',
+        dest: 'tmp/fizzbuzz.min.jsx.js',
+        minify: true,
+      },
+      profile: {
+        src: 'fixtures/fizzbuzz.jsx',
+        dest: 'tmp/fizzbuzz.prof.jsx.js',
+        profile: true,
+      },
+      optimize: {
+        src: 'fixtures/fizzbuzz.jsx',
+        dest: 'tmp/fizzbuzz.opt.jsx.js',
+        optimize: "no-assert,inline,no-debug",
+      },
+      disable_optimize: {
+        src: 'fixtures/fizzbuzz.jsx',
+        dest: 'tmp/fizzbuzz.disopt.jsx.js',
+        disable_optimize: "array-length,unclassify",
+      },
+      enable_source_map: {
+        src: 'fixtures/fizzbuzz.jsx',
+        dest: 'tmp/fizzbuzz.srcmap.jsx.js',
+        enable_source_map: true,
+      },
+      warn: {
+        src: 'fixtures/fizzbuzz.jsx',
+        dest: 'tmp/fizzbuzz.warn.jsx.js',
+        warn: 'all',
+      },
+      mode: {
+        src: 'fixtures/fizzbuzz.jsx',
+        dest: 'tmp/fizzbuzz.mode.jsx.js',
+        mode: 'parse',
+      },
+      target: {
+        src: 'fixtures/fizzbuzz.jsx',
+        dest: 'tmp/fizzbuzz.target.jsx.js',
+        target: 'javascript',
+      },
+      args: {
+        src: 'fixtures/fizzbuzz.jsx',
+        dest: 'tmp/fizzbuzz.arg.jsx.js',
+        minify: true,
+        args: '--profile --add-search-path fixtures/'
+      }
     }
   });
   grunt.loadTasks('tasks');

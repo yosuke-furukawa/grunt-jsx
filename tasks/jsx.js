@@ -24,7 +24,17 @@ module.exports = function(grunt) {
             output: file.dest,
             executable: file.executable,
             release: file.release,
-            "add-search-path": file.add_search_path
+            "add-search-path": file.add_search_path,
+            "enable-source-map": file.enable_source_map,
+            profile: file.profile,
+            minify: file.minify,
+            optimize: file.optimize,
+            "disable-optimize": file.disable_optimize,
+            warn: file.warn,
+            "disable-type-check": file.disable_type_check,
+            mode: file.mode,
+            target: file.target,
+            args: file.args,
           },
           function(error, result, code) {
             if (!error) {
@@ -42,7 +52,9 @@ module.exports = function(grunt) {
       grunt.log.warn('Source file is undefiend.');
       callback("No file", null, 1);
     }
-    var args = [];
+    var args = opts.args ? opts.args.split(" ") : [];
+    delete opts["args"];
+
     _.each(opts, function(value, key) {
       if(value && value !== true) {
         if (_.isArray(value)) {
@@ -57,12 +69,8 @@ module.exports = function(grunt) {
       else if(value === true) args.push("--"+key);
     });
     args.push(file);
-    grunt.log.write('jsx');
-    _.each(args, function(arg) {
-      grunt.log.write(' ');
-      grunt.log.write(arg);
-    });
-    grunt.log.writeln();
+    grunt.log.write('jsx ');
+    grunt.log.writeln(args.join(" "));
     var jsx = grunt.util.spawn({
       cmd: 'jsx',
       args: args

@@ -64,3 +64,82 @@ $ grunt jsx:server // jsx --output tmp/hello.node.jsx.js --executable node fixtu
 $ grunt jsx:release // jsx --output tmp/hello.release.jsx.js --executable node --release fixtures/hello.jsx
 $ grunt jsx:add_search_path // jsx --output tmp/import.jsx.js --add-search-path fixtures/ fixtures/import.jsx
 ```
+
+## Configs
+
+### src
+
+Type: `string`
+jsx filepath for compile.
+setting example: `src: 'main.jsx'`
+
+### dest
+
+Type: `string`
+output javascript path.
+setting example: `dest: 'main.jsx.js'`
+
+### executable
+
+Type: `string`
+add runtime environment, supported env is `node`, `commonjs` and `web`.
+
+### add_search_path
+
+Type: `string` or `array`
+add a path to search library
+setting example: `add_search_path: ['lib/', 'lib2/']`
+
+### release
+
+Type: `boolean`
+disable runtime type check and enable optimization
+
+### profile
+
+Type: `boolean`
+enables profiler
+
+### optimize
+
+Type: `string`
+enables optimization commands.
+setting example: `optimize: "no-debug,staticize"`
+
+### warn
+
+Type: `string`
+enables warinings, all, deprecated, none
+setting example: `warn: "all"`
+
+### disable_type_check
+
+Type: `boolean`
+disable run-time type check
+
+### minify
+
+Type: `boolean`
+compress javascript code
+
+### enable_source_map
+
+Type: `boolean`
+enables source map debugging info
+
+### mode
+
+Type: `string`
+specifies compilaton mode, compile, parse, doc
+
+### target
+
+Type: `string`
+specifies target lang, javascript, c++
+
+
+### args
+
+Type: `string`
+add arguments to JSX. 
+example: `args: '--minify --release --add-search-path lib/'`
