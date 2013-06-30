@@ -28,7 +28,7 @@ module.exports = function(grunt) {
           },
           function(error, result, code) {
             if (!error) {
-              grunt.verbose.ok();
+              grunt.log.ok();
             }
             done(!code);
           });
@@ -57,12 +57,12 @@ module.exports = function(grunt) {
       else if(value === true) args.push("--"+key);
     });
     args.push(file);
-    grunt.verbose.write('jsx');
+    grunt.log.write('jsx');
     _.each(args, function(arg) {
-      grunt.verbose.write(' ');
-      grunt.verbose.write(arg);
+      grunt.log.write(' ');
+      grunt.log.write(arg);
     });
-    grunt.verbose.writeln();
+    grunt.log.writeln();
     var jsx = grunt.util.spawn({
       cmd: 'jsx',
       args: args
