@@ -8,9 +8,11 @@ module.exports = function(grunt) {
     // remove error message,
     actual = actual.replace(/Error\(".+?"/g, 'Error\(""');
     actual = actual.replace(/".+?"/g, '""');
+    actual = actual.replace(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/g, '""');
     var expected = grunt.file.read(pathToExpected).replace(/\/\/.+\n/g, "");
     expected = expected.replace(/Error\(".+?"/g, 'Error\(""');
     expected = expected.replace(/".+?"/g, '""');
+    actual = actual.replace(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/g, '""');
     console.log(pathToActual, pathToExpected);
     expect(actual).to.eql(expected);
   }
