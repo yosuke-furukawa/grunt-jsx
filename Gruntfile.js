@@ -31,8 +31,8 @@ module.exports = function(grunt) {
     },
     checkfile: {
       test: {
-        actuals: 'tmp/*.js',
-        expected: 'fixtures/expected/*.js'
+        actuals: ['tmp/*.js', 'tmp/template/fixtures/template.jsx.html'],
+        expected: ['fixtures/expected/*.js', 'fixtures/expected/template/fixtures/template.jsx.html']
       }
     },
     jsx: {
@@ -100,6 +100,15 @@ module.exports = function(grunt) {
         src: 'fixtures/fizzbuzz.jsx',
         dest: 'tmp/fizzbuzz.target.jsx.js',
         target: 'javascript',
+      },
+      test: {
+        src: 'fixtures/import.jsx',
+        test: true,
+      },
+      mode_doc: {
+        src: 'fixtures/template.jsx',
+        dest: 'tmp/template',
+        mode: 'doc',
       },
       args: {
         src: 'fixtures/fizzbuzz.jsx',

@@ -34,6 +34,7 @@ module.exports = function(grunt) {
             "disable-type-check": file.disable_type_check,
             mode: file.mode,
             target: file.target,
+            test: file.test,
             args: file.args,
           },
           function(error, result, code) {
@@ -53,7 +54,7 @@ module.exports = function(grunt) {
       callback("No file", null, 1);
     }
     var args = opts.args ? opts.args.split(" ") : [];
-    delete opts["args"];
+    delete opts.args;
 
     _.each(opts, function(value, key) {
       if(value && value !== true) {
