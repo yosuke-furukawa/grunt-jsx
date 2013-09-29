@@ -12,4 +12,6 @@ fixture:
 	jsx --output fixtures/expected/fizzbuzz.warn.jsx.js --warn all fixtures/fizzbuzz.jsx
 	jsx --output fixtures/expected/fizzbuzz.mode.jsx.js --mode parse fixtures/fizzbuzz.jsx
 	jsx --output fixtures/expected/fizzbuzz.target.jsx.js --target javascript fixtures/fizzbuzz.jsx
+	jsx --output fixtures/expected/template --mode doc fixtures/template.jsx
+	jsx --output fixtures/expected/hello.js fixtures/hello.jsx
 	jsx --output fixtures/expected/fizzbuzz.arg.jsx.js --minify --profile --add-search-path fixtures/ fixtures/fizzbuzz.jsx

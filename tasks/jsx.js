@@ -36,6 +36,7 @@ module.exports = function(grunt) {
             target: file.target,
             test: file.test,
             args: file.args,
+            output_rule : file.output_rule,
           },
           function(error, result, code) {
             if (!error) {
@@ -54,7 +55,14 @@ module.exports = function(grunt) {
       callback("No file", null, 1);
     }
     var args = opts.args ? opts.args.split(" ") : [];
+    var output_rule = opts.output_rule;
     delete opts.args;
+    delete opts.output_rule;
+
+    if (!opts.output && output_rule) {
+      //need output
+      opts.output = file.replace(output_rule.regexp, output_rule.replace);
+    }
 
     _.each(opts, function(value, key) {
       if(value && value !== true) {

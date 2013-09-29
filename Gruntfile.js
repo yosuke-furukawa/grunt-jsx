@@ -110,6 +110,13 @@ module.exports = function(grunt) {
         dest: 'tmp/template',
         mode: 'doc',
       },
+      filename_rule: {
+        src: 'fixtures/hello.jsx',
+        output_rule: {
+          regexp: /fixtures\/(.*).jsx/,
+          replace: 'tmp\/$1.js',
+        }
+      },
       args: {
         src: 'fixtures/fizzbuzz.jsx',
         dest: 'tmp/fizzbuzz.arg.jsx.js',

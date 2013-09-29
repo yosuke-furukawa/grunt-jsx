@@ -1,0 +1,125 @@
+.jsxdoc {
+    margin: 0;
+    color: #333;
+    line-height: 1.5em;
+}
+
+.jsxdoc .file {
+    padding: 1em 40px 1em 40px;
+}
+
+.jsxdoc h1 {
+    font-size: 220%;
+    margin: 0.5em 0;
+    color: #336;
+}
+
+.jsxdoc h2 {
+    font-size: 150%;
+    font-weight: normal;
+    margin: 0.5em 0;
+    padding: 5px;
+    color: #336;
+    background-color: #cce;
+}
+
+.jsxdoc h3 {
+    font-size: 120%;
+    font-weight: normal;
+    margin: 0.5em 0;
+    color: #000;
+    border-bottom: dotted 1px gray;
+}
+
+.jsxdoc pre {
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: #eee;
+    border: 1px dotted gray;
+}
+
+.jsxdoc code {
+    font-size: 110%;
+}
+
+.jsxdoc .class {
+    margin: 0;
+    padding: 1em 30px;
+    border-top: 1px dotted #ccc;
+}
+
+.jsxdoc .member {
+    margin: 1em 0;
+}
+
+.jsxdoc .member h3 {
+    margin-left: 20px;
+}
+
+.jsxdoc .description {
+    margin: 0.5em 0 0.5em 3em;
+    text-align: justify;
+}
+
+.jsxdoc .description h2 {
+    font-size: 140%;
+    color: black;
+    background-color: white;
+}
+.jsxdoc .description h3 {
+    font-size: 110%;
+    color: black;
+    background-color: white;
+}
+
+.jsxdoc .arguments {
+    margin: 0.5em 0 0.5em 4em;
+    padding-left: 2em;
+}
+
+.jsxdoc .arguments caption {
+    text-align: left;
+    font-weight: normal;
+}
+
+.jsxdoc .arguments td {
+    margin: 0;
+    padding: 0.3em 1em;
+    vertical-align: baseline;
+}
+
+.jsxdoc .arguments .param-name {
+    font-family: monospace;
+}
+
+.jsxdoc .author {
+    font-size: smaller;
+}
+
+.jsxdoc .version {
+    font-size: smaller;
+}
+
+.jsxdoc .since {
+    font-size: smaller;
+}
+
+.jsxdoc .see {
+}
+
+.jsxdoc-notice {
+    font-size: smaller;
+}
+
+div#footer {
+    background-color: #eee;
+}
+
+.jsxdoc a {
+    color: #669;
+    text-decoration: none;
+}
+
+.jsxdoc a:hover {
+    text-decoration: underline;
+}
