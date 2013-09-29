@@ -1,4 +1,4 @@
-// generatedy by JSX compiler 0.9.44 (2013-06-25 09:37:20 +0900; 9591ad3b92a4fae6ef2dcde12a60e65f94bc7c1e)
+// generatedy by JSX compiler 0.9.65 (2013-09-10 22:05:42 +0900; 56dae7ea41e230ec1bfd940129342aa096ad35e1)
 var JSX = {};
 (function (JSX) {
 /**
@@ -56,7 +56,7 @@ function $__jsx_div_assign(obj, prop, divisor) {
  */
 var $__jsx_parseInt = parseInt;
 var $__jsx_parseFloat = parseFloat;
-var $__jsx_isNaN = isNaN;
+function $__jsx_isNaN(n) { return n !== n; }
 var $__jsx_isFinite = isFinite;
 
 var $__jsx_encodeURIComponent = encodeURIComponent;
@@ -101,11 +101,13 @@ JSX.resetProfileResults = function () {
 	return $__jsx_profiler.resetResults();
 };
 JSX.DEBUG = true;
-function g_StopIteration() {
+function StopIteration() {
 	Error.call(this);
+	this.name = "StopIteration";
+	if (Error.captureStackTrace) Error.captureStackTrace(this, StopIteration);
 };
 
-$__jsx_extend([g_StopIteration], Error);
+$__jsx_extend([StopIteration], Error);
 function _Main() {
 };
 
@@ -243,7 +245,7 @@ TestCase.prototype.run$SF$V$ = function (name, testFunction) {
 		testFunction();
 	} catch ($__jsx_catch_0) {
 		if ($__jsx_catch_0 instanceof Error) {
-			if ($__jsx_catch_0 instanceof TestCase$CFailure) {
+			if ($__jsx_catch_0 instanceof TestCase$x2EFailure) {
 				msg = ($__jsx_catch_0.message ? " - " + $__jsx_catch_0.message : "");
 			} else {
 				msg = " - failed with exception";
@@ -317,13 +319,13 @@ TestCase.prototype.async$F$LAsyncContext$V$I = function (testBody, timeoutMS) {
 
 TestCase.prototype.expect$X = function (value) {
 	++ this._count;
-	return new TestCase$CMatcher(this, value);
+	return new TestCase$x2EMatcher$0(this, value);
 };
 
 
 TestCase.prototype.expect$XS = function (value, message) {
 	++ this._count;
-	return new TestCase$CMatcher$0(this, value, message);
+	return new TestCase$x2EMatcher(this, value, message);
 };
 
 
@@ -367,7 +369,7 @@ TestCase.prototype._nok$USUSXX = function (name, op, got, expected) {
 		this._dump$SX("got:      ", got);
 		this._dump$SX("expected: ", expected);
 	}
-	throw new TestCase$CFailure((function (v) {
+	throw new TestCase$x2EFailure((function (v) {
 		if (! (v != null)) {
 			debugger;
 			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:245:48] null access\n        throw new TestCase.Failure(name != null ? name : \"\");\n                                                ^\n");
@@ -386,7 +388,7 @@ TestCase.prototype.pass$S = function (reason) {
 
 TestCase.prototype.fail$S = function (reason) {
 	++ this._count;
-	throw new TestCase$CFailure(reason);
+	throw new TestCase$x2EFailure(reason);
 };
 
 
@@ -480,7 +482,7 @@ TestCase.prototype._equals$XXI = function (a, b, recursion) {
 		}
 		for (i = 0; i < mapAkeys.length; ++ i) {
 			key = mapAkeys[i];
-			if (key != mapBkeys[i]) {
+			if (key !== mapBkeys[i]) {
 				return false;
 			}
 			if (! this._equals$XXI(mapA[key], mapB[key], recursion)) {
@@ -646,7 +648,7 @@ function Timer$setTimeout$F$V$N(callback, intervalMS) {
 			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:34:40] detected invalid cast, value is not a function or null\n        return (js.global[\"setTimeout\"] as __noconvert__ function(:function():void,:number) : TimerHandle)(callback, intervalMS);\n                                        ^^\n");
 		}
 		return $v;
-	}(js.global.setTimeout))(callback, intervalMS);
+	}(js$0.global.setTimeout))(callback, intervalMS);
 };
 
 Timer.setTimeout$F$V$N = Timer$setTimeout$F$V$N;
@@ -658,7 +660,7 @@ function Timer$clearTimeout$LTimerHandle$(timer) {
 			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:38:35] detected invalid cast, value is not a function or null\n        (js.global[\"clearTimeout\"] as __noconvert__ function(:TimerHandle) : void)(timer);\n                                   ^^\n");
 		}
 		return $v;
-	}(js.global.clearTimeout))(timer);
+	}(js$0.global.clearTimeout))(timer);
 };
 
 Timer.clearTimeout$LTimerHandle$ = Timer$clearTimeout$LTimerHandle$;
@@ -670,7 +672,7 @@ function Timer$setInterval$F$V$N(callback, intervalMS) {
 			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:42:41] detected invalid cast, value is not a function or null\n        return (js.global[\"setInterval\"] as __noconvert__ function(:function():void,:number) : TimerHandle)(callback, intervalMS);\n                                         ^^\n");
 		}
 		return $v;
-	}(js.global.setInterval))(callback, intervalMS);
+	}(js$0.global.setInterval))(callback, intervalMS);
 };
 
 Timer.setInterval$F$V$N = Timer$setInterval$F$V$N;
@@ -682,7 +684,7 @@ function Timer$clearInterval$LTimerHandle$(timer) {
 			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:46:36] detected invalid cast, value is not a function or null\n        (js.global[\"clearInterval\"] as __noconvert__ function(:TimerHandle) : void)(timer);\n                                    ^^\n");
 		}
 		return $v;
-	}(js.global.clearInterval))(timer);
+	}(js$0.global.clearInterval))(timer);
 };
 
 Timer.clearInterval$LTimerHandle$ = Timer$clearInterval$LTimerHandle$;
@@ -707,65 +709,30 @@ function Timer$useNativeRAF$B(enable) {
 Timer.useNativeRAF$B = Timer$useNativeRAF$B;
 
 function Timer$_getRequestAnimationFrameImpl$B(useNativeImpl) {
+	var prefixes;
+	var i;
+	var name;
 	var lastTime;
 	if (useNativeImpl) {
-		if (js.global.requestAnimationFrame) {
-			return (function (callback) {
-				return (function ($v) {
-					if (! ($v == null || typeof $v === "function")) {
-						debugger;
-						throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:72:63] detected invalid cast, value is not a function or null\n                    return (js.global[\"requestAnimationFrame\"] as __noconvert__\n                                                               ^^\n");
-					}
-					return $v;
-				}(js.global.requestAnimationFrame))(callback);
-			});
-		} else {
-			if (js.global.webkitRequestAnimationFrame) {
+		prefixes = [ "r", "webkitR", "mozR", "oR", "msR" ];
+		for (i = 0; i < prefixes.length; ++ i) {
+			name = (function (v) {
+				if (! (v != null)) {
+					debugger;
+					throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:72:35] null access\n                var name = prefixes[i] + \"equestAnimationFrame\";\n                                   ^\n");
+				}
+				return v;
+			}(prefixes[i])) + "equestAnimationFrame";
+			if (js$0.global[name] instanceof Function) {
 				return (function (callback) {
 					return (function ($v) {
 						if (! ($v == null || typeof $v === "function")) {
 							debugger;
-							throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:78:69] detected invalid cast, value is not a function or null\n                    return (js.global[\"webkitRequestAnimationFrame\"] as __noconvert__\n                                                                     ^^\n");
+							throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:75:48] detected invalid cast, value is not a function or null\n                        return (js.global[name] as __noconvert__\n                                                ^^\n");
 						}
 						return $v;
-					}(js.global.webkitRequestAnimationFrame))(callback);
+					}(js$0.global[name]))(callback);
 				});
-			} else {
-				if (js.global.mozRequestAnimationFrame) {
-					return (function (callback) {
-						return (function ($v) {
-							if (! ($v == null || typeof $v === "function")) {
-								debugger;
-								throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:84:66] detected invalid cast, value is not a function or null\n                    return (js.global[\"mozRequestAnimationFrame\"] as __noconvert__\n                                                                  ^^\n");
-							}
-							return $v;
-						}(js.global.mozRequestAnimationFrame))(callback);
-					});
-				} else {
-					if (js.global.oRequestAnimationFrame) {
-						return (function (callback) {
-							return (function ($v) {
-								if (! ($v == null || typeof $v === "function")) {
-									debugger;
-									throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:90:64] detected invalid cast, value is not a function or null\n                    return (js.global[\"oRequestAnimationFrame\"] as __noconvert__\n                                                                ^^\n");
-								}
-								return $v;
-							}(js.global.oRequestAnimationFrame))(callback);
-						});
-					} else {
-						if (js.global.msRequestAnimationFrame) {
-							return (function (callback) {
-								return (function ($v) {
-									if (! ($v == null || typeof $v === "function")) {
-										debugger;
-										throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:96:65] detected invalid cast, value is not a function or null\n                    return (js.global[\"msRequestAnimationFrame\"] as __noconvert__\n                                                                 ^^\n");
-									}
-									return $v;
-								}(js.global.msRequestAnimationFrame))(callback);
-							});
-						}
-					}
-				}
 			}
 		}
 	}
@@ -785,64 +752,29 @@ function Timer$_getRequestAnimationFrameImpl$B(useNativeImpl) {
 Timer._getRequestAnimationFrameImpl$B = Timer$_getRequestAnimationFrameImpl$B;
 
 function Timer$_getCancelAnimationFrameImpl$B(useNativeImpl) {
+	var prefixes;
+	var i;
+	var name;
 	if (useNativeImpl) {
-		if (js.global.cancelAnimationFrame) {
-			return (function (timer) {
-				(function ($v) {
-					if (! ($v == null || typeof $v === "function")) {
-						debugger;
-						throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:119:55] detected invalid cast, value is not a function or null\n                    (js.global[\"cancelAnimationFrame\"] as __noconvert__\n                                                       ^^\n");
-					}
-					return $v;
-				}(js.global.cancelAnimationFrame))(timer);
-			});
-		} else {
-			if (js.global.webkitCancelAnimationFrame) {
+		prefixes = [ "c", "webkitC", "mozC", "oC", "msC" ];
+		for (i = 0; i < prefixes.length; ++ i) {
+			name = (function (v) {
+				if (! (v != null)) {
+					debugger;
+					throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:100:35] null access\n                var name = prefixes[i] + \"ancelAnimationFrame\";\n                                   ^\n");
+				}
+				return v;
+			}(prefixes[i])) + "ancelAnimationFrame";
+			if (js$0.global[name] instanceof Function) {
 				return (function (timer) {
 					(function ($v) {
 						if (! ($v == null || typeof $v === "function")) {
 							debugger;
-							throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:125:61] detected invalid cast, value is not a function or null\n                    (js.global[\"webkitCancelAnimationFrame\"] as __noconvert__\n                                                             ^^\n");
+							throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:103:41] detected invalid cast, value is not a function or null\n                        (js.global[name] as __noconvert__\n                                         ^^\n");
 						}
 						return $v;
-					}(js.global.webkitCancelAnimationFrame))(timer);
+					}(js$0.global[name]))(timer);
 				});
-			} else {
-				if (js.global.mozCancelAnimationFrame) {
-					return (function (timer) {
-						(function ($v) {
-							if (! ($v == null || typeof $v === "function")) {
-								debugger;
-								throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:131:58] detected invalid cast, value is not a function or null\n                    (js.global[\"mozCancelAnimationFrame\"] as __noconvert__\n                                                          ^^\n");
-							}
-							return $v;
-						}(js.global.mozCancelAnimationFrame))(timer);
-					});
-				} else {
-					if (js.global.oCancelAnimationFrame) {
-						return (function (timer) {
-							(function ($v) {
-								if (! ($v == null || typeof $v === "function")) {
-									debugger;
-									throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:137:56] detected invalid cast, value is not a function or null\n                    (js.global[\"oCancelAnimationFrame\"] as __noconvert__\n                                                        ^^\n");
-								}
-								return $v;
-							}(js.global.oCancelAnimationFrame))(timer);
-						});
-					} else {
-						if (js.global.msCancelAnimationFrame) {
-							return (function (timer) {
-								(function ($v) {
-									if (! ($v == null || typeof $v === "function")) {
-										debugger;
-										throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/js/timer.jsx:143:57] detected invalid cast, value is not a function or null\n                    (js.global[\"msCancelAnimationFrame\"] as __noconvert__\n                                                         ^^\n");
-									}
-									return $v;
-								}(js.global.msCancelAnimationFrame))(timer);
-							});
-						}
-					}
-				}
 			}
 		}
 	}
@@ -851,68 +783,65 @@ function Timer$_getCancelAnimationFrameImpl$B(useNativeImpl) {
 
 Timer._getCancelAnimationFrameImpl$B = Timer$_getCancelAnimationFrameImpl$B;
 
-function TimerHandle() {
-};
-
+function TimerHandle() {}
 $__jsx_extend([TimerHandle], Object);
-function TestCase$CMatcher(test, got) {
-	this._name = null;
-	this._test = test;
-	this._got = got;
-};
-
-function TestCase$CMatcher$0(test, got, name) {
+var js$0 = (function () { var global = (function () { return this; }()); return { global: global, eval: global.eval, invoke: function(invocant, methodName, args) { return invocant[methodName].apply(invocant, args); } }; }());
+function TestCase$x2EMatcher(test, got, name) {
 	this._test = test;
 	this._got = got;
 	this._name = name;
 };
 
-$__jsx_extend([TestCase$CMatcher, TestCase$CMatcher$0], Object);
-TestCase$CMatcher.prototype.toBe$X = function (x) {
+function TestCase$x2EMatcher$0(test, got) {
+	TestCase$x2EMatcher.call(this, test, got, null);
+};
+
+$__jsx_extend([TestCase$x2EMatcher, TestCase$x2EMatcher$0], Object);
+TestCase$x2EMatcher.prototype.toBe$X = function (x) {
 	this._match$BXXS(this._got == x, this._got, x, "==");
 };
 
 
-TestCase$CMatcher.prototype.notToBe$X = function (x) {
+TestCase$x2EMatcher.prototype.notToBe$X = function (x) {
 	this._match$BXXS(this._got != x, this._got, x, "!=");
 };
 
 
-TestCase$CMatcher.prototype.toBeLT$N = function (x) {
+TestCase$x2EMatcher.prototype.toBeLT$N = function (x) {
 	this._match$BXXS(+this._got < x, this._got, x, "<");
 };
 
 
-TestCase$CMatcher.prototype.toBeLE$N = function (x) {
+TestCase$x2EMatcher.prototype.toBeLE$N = function (x) {
 	this._match$BXXS(+this._got <= x, this._got, x, "<=");
 };
 
 
-TestCase$CMatcher.prototype.toBeGT$N = function (x) {
+TestCase$x2EMatcher.prototype.toBeGT$N = function (x) {
 	this._match$BXXS(+this._got > x, this._got, x, ">");
 };
 
 
-TestCase$CMatcher.prototype.toBeGE$N = function (x) {
+TestCase$x2EMatcher.prototype.toBeGE$N = function (x) {
 	this._match$BXXS(+this._got >= x, this._got, x, ">=");
 };
 
 
-TestCase$CMatcher.prototype.toMatch$LRegExp$ = function (x) {
+TestCase$x2EMatcher.prototype.toMatch$LRegExp$ = function (x) {
 	this._match$BXXS(x.test(this._got + ""), this._got, x, "match");
 };
 
 
-TestCase$CMatcher.prototype.notToMatch$LRegExp$ = function (x) {
+TestCase$x2EMatcher.prototype.notToMatch$LRegExp$ = function (x) {
 	this._match$BXXS(! x.test(this._got + ""), this._got, x, "not match");
 };
 
 
-TestCase$CMatcher.prototype.toEqual$AX = function (x) {
+TestCase$x2EMatcher.prototype.toEqual$AX = function (x) {
 	var got;
 	if (! (x != null)) {
 		debugger;
-		throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:470:21] assertion failure\n            assert x != null;\n                     ^^\n");
+		throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:468:21] assertion failure\n            assert x != null;\n                     ^^\n");
 	}
 	if (! (this._got instanceof Array)) {
 		this._test._nok$USUSXX(this._name, "equals", this._got, x);
@@ -921,7 +850,7 @@ TestCase$CMatcher.prototype.toEqual$AX = function (x) {
 	got = (function ($v) {
 		if (! ($v == null || $v instanceof Array)) {
 			debugger;
-			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:477:32] detected invalid cast, value is not an Array or null\n            var got = this._got as Array.<variant>;\n                                ^^\n");
+			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:475:32] detected invalid cast, value is not an Array or null\n            var got = this._got as Array.<variant>;\n                                ^^\n");
 		}
 		return $v;
 	}(this._got));
@@ -934,51 +863,51 @@ TestCase$CMatcher.prototype.toEqual$AX = function (x) {
 };
 
 
-TestCase$CMatcher.prototype.toEqual$AS = function (x) {
+TestCase$x2EMatcher.prototype.toEqual$AS = function (x) {
 	this.toEqual$AX((function ($v) {
 		if (! ($v == null || $v instanceof Array)) {
 			debugger;
-			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:488:27] detected invalid cast, value is not an Array or null\n            this.toEqual(x as __noconvert__ Array.<variant>);\n                           ^^\n");
+			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:486:27] detected invalid cast, value is not an Array or null\n            this.toEqual(x as __noconvert__ Array.<variant>);\n                           ^^\n");
 		}
 		return $v;
 	}(x)));
 };
 
 
-TestCase$CMatcher.prototype.toEqual$AN = function (x) {
+TestCase$x2EMatcher.prototype.toEqual$AN = function (x) {
 	this.toEqual$AX((function ($v) {
 		if (! ($v == null || $v instanceof Array)) {
 			debugger;
-			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:491:27] detected invalid cast, value is not an Array or null\n            this.toEqual(x as __noconvert__ Array.<variant>);\n                           ^^\n");
+			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:489:27] detected invalid cast, value is not an Array or null\n            this.toEqual(x as __noconvert__ Array.<variant>);\n                           ^^\n");
 		}
 		return $v;
 	}(x)));
 };
 
 
-TestCase$CMatcher.prototype.toEqual$AI = function (x) {
+TestCase$x2EMatcher.prototype.toEqual$AI = function (x) {
 	this.toEqual$AX((function ($v) {
 		if (! ($v == null || $v instanceof Array)) {
 			debugger;
-			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:494:27] detected invalid cast, value is not an Array or null\n            this.toEqual(x as __noconvert__ Array.<variant>);\n                           ^^\n");
+			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:492:27] detected invalid cast, value is not an Array or null\n            this.toEqual(x as __noconvert__ Array.<variant>);\n                           ^^\n");
 		}
 		return $v;
 	}(x)));
 };
 
 
-TestCase$CMatcher.prototype.toEqual$AB = function (x) {
+TestCase$x2EMatcher.prototype.toEqual$AB = function (x) {
 	this.toEqual$AX((function ($v) {
 		if (! ($v == null || $v instanceof Array)) {
 			debugger;
-			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:497:27] detected invalid cast, value is not an Array or null\n            this.toEqual(x as __noconvert__ Array.<variant>);\n                           ^^\n");
+			throw new Error("[/Users/furukawa.yosuke/.nodebrew/node/v0.10.10/lib/node_modules/jsx/lib/common/test-case.jsx:495:27] detected invalid cast, value is not an Array or null\n            this.toEqual(x as __noconvert__ Array.<variant>);\n                           ^^\n");
 		}
 		return $v;
 	}(x)));
 };
 
 
-TestCase$CMatcher.prototype._match$BXXS = function (value, got, expected, op) {
+TestCase$x2EMatcher.prototype._match$BXXS = function (value, got, expected, op) {
 	if (value) {
 		this._test._ok$US(this._name);
 	} else {
@@ -987,24 +916,25 @@ TestCase$CMatcher.prototype._match$BXXS = function (value, got, expected, op) {
 };
 
 
-function TestCase$CFailure(reason) {
-	Error.call(this);
+function TestCase$x2EFailure(reason) {
+	Error.call(this, reason);
 	this.message = reason;
+	this.name = "TestCase.Failure";
+	if (Error.captureStackTrace) Error.captureStackTrace(this, TestCase$x2EFailure);
 };
 
-$__jsx_extend([TestCase$CFailure], Error);
+$__jsx_extend([TestCase$x2EFailure], Error);
 $__jsx_lazy_init(Timer, "_requestAnimationFrame", function () {
 	return Timer$_getRequestAnimationFrameImpl$B(true);
 });
 $__jsx_lazy_init(Timer, "_cancelAnimationFrame", function () {
 	return Timer$_getCancelAnimationFrameImpl$B(true);
 });
-var js = { global: function () { return this; }() };
 
 var $__jsx_classMap = {
 	"system:lib/built-in.jsx": {
-		g_StopIteration: g_StopIteration,
-		g_StopIteration$: g_StopIteration
+		StopIteration: StopIteration,
+		StopIteration$: StopIteration
 	},
 	"fixtures/import.jsx": {
 		_Main: _Main,
@@ -1023,17 +953,16 @@ var $__jsx_classMap = {
 		TestCase$: TestCase,
 		AsyncContext: AsyncContext,
 		AsyncContext$LTestCase$SF$LAsyncContext$V$I: AsyncContext,
-		"TestCase.Matcher": TestCase$CMatcher,
-		"TestCase.Matcher$LTestCase$X": TestCase$CMatcher,
-		"TestCase.Matcher$LTestCase$XS": TestCase$CMatcher$0,
-		"TestCase.Failure": TestCase$CFailure,
-		"TestCase.Failure$S": TestCase$CFailure
+		"TestCase.Matcher": TestCase$x2EMatcher,
+		"TestCase.Matcher$LTestCase$XUS": TestCase$x2EMatcher,
+		"TestCase.Matcher$LTestCase$X": TestCase$x2EMatcher$0,
+		"TestCase.Failure": TestCase$x2EFailure,
+		"TestCase.Failure$S": TestCase$x2EFailure
 	},
 	"system:lib/js/timer.jsx": {
 		Timer: Timer,
 		Timer$: Timer,
-		TimerHandle: TimerHandle,
-		TimerHandle$: TimerHandle
+		TimerHandle: TimerHandle
 	}
 };
 

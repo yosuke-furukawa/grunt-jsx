@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// generatedy by JSX compiler 0.9.44 (2013-06-25 09:37:20 +0900; 9591ad3b92a4fae6ef2dcde12a60e65f94bc7c1e)
+// generatedy by JSX compiler 0.9.65 (2013-09-10 22:05:42 +0900; 56dae7ea41e230ec1bfd940129342aa096ad35e1)
 var JSX = {};
 (function (JSX) {
 /**
@@ -57,7 +57,7 @@ function $__jsx_div_assign(obj, prop, divisor) {
  */
 var $__jsx_parseInt = parseInt;
 var $__jsx_parseFloat = parseFloat;
-var $__jsx_isNaN = isNaN;
+function $__jsx_isNaN(n) { return n !== n; }
 var $__jsx_isFinite = isFinite;
 
 var $__jsx_encodeURIComponent = encodeURIComponent;
@@ -102,11 +102,13 @@ JSX.resetProfileResults = function () {
 	return $__jsx_profiler.resetResults();
 };
 JSX.DEBUG = false;
-function g_StopIteration() {
+function StopIteration() {
 	Error.call(this);
+	this.name = "StopIteration";
+	if (Error.captureStackTrace) Error.captureStackTrace(this, StopIteration);
 };
 
-$__jsx_extend([g_StopIteration], Error);
+$__jsx_extend([StopIteration], Error);
 function _Main() {
 };
 
@@ -120,8 +122,8 @@ _Main.main$AS = _Main$main$AS;
 
 var $__jsx_classMap = {
 	"system:lib/built-in.jsx": {
-		g_StopIteration: g_StopIteration,
-		g_StopIteration$: g_StopIteration
+		StopIteration: StopIteration,
+		StopIteration$: StopIteration
 	},
 	"fixtures/hello.jsx": {
 		_Main: _Main,
@@ -152,6 +154,8 @@ JSX.runMain = function (sourceFile, args) {
  */
 JSX.runTests = function (sourceFile, tests) {
 	var module = JSX.require(sourceFile);
+	if (! module) return;
+
 	var testClass = module._Test;
 
 	if (!testClass) return; // skip if there's no test class
@@ -184,5 +188,5 @@ JSX.runTests = function (sourceFile, tests) {
 	if (testCase.afterClass != null)
 		testCase.afterClass();
 };
-JSX.runMain("fixtures/hello.jsx", process.argv.slice(2))
+JSX.runMain("fixtures/hello.jsx", process.argv.slice(2));
 })(JSX);
