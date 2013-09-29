@@ -137,9 +137,36 @@ specifies compilaton mode, compile, parse, doc
 Type: `string`
 specifies target lang, javascript, c++
 
+### test
+
+Type: `boolean`
+enable test option
+
+### output_rule
+
+Type: `hash`
+if dest option is undefined, execute output_rule.
+output_rule has to be set `regexp` and `replace`.
+
+`regexp` find a string from your `src` and replace the string to `replace` string.
+
+```javascript
+filename_rule: {
+  src: 'fixtures/hello.jsx',
+  output_rule: {
+    regexp: /fixtures\/(.*).jsx/,
+    replace: 'tmp\/$1.js',
+  }
+},
+```
 
 ### args
 
 Type: `string`
 add arguments to JSX. 
 example: `args: '--minify --release --add-search-path lib/'`
+
+
+# ChangeLogs
+
+2013/09/29 v0.1.0 enable test option and output_rule and fix some test errors.
