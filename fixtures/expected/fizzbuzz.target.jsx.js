@@ -1,4 +1,4 @@
-// generatedy by JSX compiler 0.9.47 (2013-06-26 23:58:26 -0700; 360ae340611be3e4d4c8cd373ff131f04501aabc)
+// generatedy by JSX compiler 0.9.65 (2013-09-10 22:05:42 +0900; 56dae7ea41e230ec1bfd940129342aa096ad35e1)
 var JSX = {};
 (function (JSX) {
 /**
@@ -56,7 +56,7 @@ function $__jsx_div_assign(obj, prop, divisor) {
  */
 var $__jsx_parseInt = parseInt;
 var $__jsx_parseFloat = parseFloat;
-var $__jsx_isNaN = isNaN;
+function $__jsx_isNaN(n) { return n !== n; }
 var $__jsx_isFinite = isFinite;
 
 var $__jsx_encodeURIComponent = encodeURIComponent;
@@ -101,11 +101,13 @@ JSX.resetProfileResults = function () {
 	return $__jsx_profiler.resetResults();
 };
 JSX.DEBUG = true;
-function g_StopIteration() {
+function StopIteration() {
 	Error.call(this);
+	this.name = "StopIteration";
+	if (Error.captureStackTrace) Error.captureStackTrace(this, StopIteration);
 };
 
-$__jsx_extend([g_StopIteration], Error);
+$__jsx_extend([StopIteration], Error);
 function _Main() {
 };
 
@@ -115,16 +117,12 @@ function _Main$main$AS(args) {
 	for (i = 1; i <= 100; ++ i) {
 		if (i % 15 === 0) {
 			console.log("FizzBuzz");
+		} else if (i % 3 === 0) {
+			console.log("Fizz");
+		} else if (i % 5 === 0) {
+			console.log("Buzz");
 		} else {
-			if (i % 3 === 0) {
-				console.log("Fizz");
-			} else {
-				if (i % 5 === 0) {
-					console.log("Buzz");
-				} else {
-					console.log(i);
-				}
-			}
+			console.log(i);
 		}
 	}
 };
@@ -135,8 +133,8 @@ _Main.main$AS = _Main$main$AS;
 
 var $__jsx_classMap = {
 	"system:lib/built-in.jsx": {
-		g_StopIteration: g_StopIteration,
-		g_StopIteration$: g_StopIteration
+		StopIteration: StopIteration,
+		StopIteration$: StopIteration
 	},
 	"fixtures/fizzbuzz.jsx": {
 		_Main: _Main,
