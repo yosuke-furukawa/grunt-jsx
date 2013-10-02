@@ -122,6 +122,20 @@ module.exports = function(grunt) {
         dest: 'tmp/fizzbuzz.arg.jsx.js',
         minify: true,
         args: '--profile --add-search-path fixtures/'
+      },
+      auto_extension_completion1: {
+        src: 'fixtures/hello2.jsx',
+        dest: 'tmp/',
+        executable: 'node'
+      },
+      auto_extension_completion2: {
+        src: 'fixtures/hello2.jsx',
+        dest: 'tmp/'
+      },
+      ext: {
+        src: 'fixtures/hello.jsx',
+        dest: 'tmp/',
+        ext: '.jsfl'
       }
     }
   });

@@ -100,7 +100,7 @@ JSX.resetProfileResults = function () {
 		throw new Error("profiler has not been turned on");
 	return $__jsx_profiler.resetResults();
 };
-JSX.DEBUG = false;
+JSX.DEBUG = true;
 function StopIteration() {
 	Error.call(this);
 	this.name = "StopIteration";
@@ -113,18 +113,7 @@ function _Main() {
 
 $__jsx_extend([_Main], Object);
 function _Main$main$AS(args) {
-	var i;
-	for (i = 1; i <= 100; ++ i) {
-		if (i % 15 === 0) {
-			console.log("FizzBuzz");
-		} else if (i % 3 === 0) {
-			console.log("Fizz");
-		} else if (i % 5 === 0) {
-			console.log("Buzz");
-		} else {
-			console.log(i);
-		}
-	}
+	console.log("Hello, world! No.2");
 };
 
 _Main.main = _Main$main$AS;
@@ -136,7 +125,7 @@ var $__jsx_classMap = {
 		StopIteration: StopIteration,
 		StopIteration$: StopIteration
 	},
-	"fixtures/fizzbuzz.jsx": {
+	"fixtures/hello2.jsx": {
 		_Main: _Main,
 		_Main$: _Main
 	}
