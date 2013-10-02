@@ -1,4 +1,4 @@
-fixture: 
+fixture:
 	jsx --output fixtures/expected/hello.jsx.js fixtures/hello.jsx
 	jsx --output fixtures/expected/hello.node.jsx.js --executable node fixtures/hello.jsx
 	jsx --output fixtures/expected/hello.release.jsx.js --executable node --release fixtures/hello.jsx
@@ -15,3 +15,8 @@ fixture:
 	jsx --output fixtures/expected/template --mode doc fixtures/template.jsx
 	jsx --output fixtures/expected/hello.js fixtures/hello.jsx
 	jsx --output fixtures/expected/fizzbuzz.arg.jsx.js --minify --profile --add-search-path fixtures/ fixtures/fizzbuzz.jsx
+	# auto extension completion test
+	jsx --output fixtures/expected/hello2 --executable node fixtures/hello2.jsx
+	jsx --output fixtures/expected/hello2.js fixtures/hello2.jsx
+	# ext test
+	jsx --output fixtures/expected/hello.jsfl fixtures/hello.jsx

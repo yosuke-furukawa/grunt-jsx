@@ -37,6 +37,7 @@ module.exports = function(grunt) {
             test: file.test,
             args: file.args,
             output_rule : file.output_rule,
+            ext: file.ext
           },
           function(error, result, code) {
             if (!error) {
@@ -46,8 +47,24 @@ module.exports = function(grunt) {
           });
       });
     });
-
   });
+
+  var changeExt = function (file, ext, opts) {
+    var output = file;
+    if (file.lastIndexOf('.') !== -1)
+    {
+      output = file.slice(0, file.lastIndexOf('.'));
+    }
+    if (ext)
+    {
+      output = output + ext;
+    }
+    else if (!opts.executable || opts.executable !== 'node')
+    {
+      output = output + '.js';
+    }
+    return output;
+  };
 
   var compileJsx = function (file, opts, callback) {
     if (!file) {
@@ -56,12 +73,24 @@ module.exports = function(grunt) {
     }
     var args = opts.args ? opts.args.split(" ") : [];
     var output_rule = opts.output_rule;
+    var ext = opts.ext;
     delete opts.args;
     delete opts.output_rule;
+    delete opts.ext;
 
-    if (!opts.output && output_rule) {
-      //need output
-      opts.output = file.replace(output_rule.regexp, output_rule.replace);
+    if (!opts.output) {
+      if (output_rule) {
+        //need output
+        opts.output = file.replace(output_rule.regexp, output_rule.replace);
+      }
+      else
+      {
+        opts.output = changeExt(file, ext, opts);
+      }
+    }
+    else if (grunt.file.isDir(opts.output))
+    {
+      opts.output = changeExt(path.resolve(opts.output, file.slice(file.lastIndexOf('/') + 1)), ext, opts);
     }
 
     _.each(opts, function(value, key) {
@@ -75,7 +104,9 @@ module.exports = function(grunt) {
           args.push("--"+key, value);
         }
       }
-      else if(value === true) args.push("--"+key);
+      else if(value === true) {
+        args.push("--"+key);
+      }
     });
     args.push(file);
     grunt.log.write('jsx ');

@@ -163,9 +163,14 @@ filename_rule: {
 ### args
 
 Type: `string`
-add arguments to JSX. 
+add arguments to JSX.
 example: `args: '--minify --release --add-search-path lib/'`
 
+### ext
+
+Type: `string`
+Spcifies file extension. Default value is `'.js'` or `''` (for `--executable node`).
+These extensions are used if `dest` is not specified or a directory.
 
 # ChangeLogs
 
