@@ -47,14 +47,13 @@ module.exports = function(grunt) {
           });
       });
     });
-
   });
 
   var changeExt = function (file, ext, opts) {
     var output = file;
     if (file.lastIndexOf('.') !== -1)
     {
-      output = file.slice(0, file.lastIndexOf('.'))
+      output = file.slice(0, file.lastIndexOf('.'));
     }
     if (ext)
     {
@@ -65,7 +64,7 @@ module.exports = function(grunt) {
       output = output + '.js';
     }
     return output;
-  }
+  };
 
   var compileJsx = function (file, opts, callback) {
     if (!file) {
@@ -91,12 +90,7 @@ module.exports = function(grunt) {
     }
     else if (grunt.file.isDir(opts.output))
     {
-      var dir = opts.output;
-      if (dir.slice(-1) !== '/')
-      {
-        dir = dir + '/';
-      }
-      opts.output = changeExt(dir + file.slice(file.lastIndexOf('/') + 1), ext, opts);
+      opts.output = changeExt(path.resolve(opts.output, file.slice(file.lastIndexOf('/') + 1)), ext, opts);
     }
 
     _.each(opts, function(value, key) {
@@ -110,7 +104,9 @@ module.exports = function(grunt) {
           args.push("--"+key, value);
         }
       }
-      else if(value === true) args.push("--"+key);
+      else if(value === true) {
+        args.push("--"+key);
+      }
     });
     args.push(file);
     grunt.log.write('jsx ');
