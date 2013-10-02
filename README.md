@@ -174,4 +174,5 @@ These extensions are used if `dest` is not specified or a directory.
 
 # ChangeLogs
 
+2013/10/02 v0.1.1 enable ext option (Thanks to shibukawa san).
 2013/09/29 v0.1.0 enable test option and output_rule and fix some test errors.
