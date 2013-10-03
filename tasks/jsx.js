@@ -121,9 +121,8 @@ module.exports = function(grunt) {
     grunt.log.writeln(args.join(" "));
     var jsx = grunt.util.spawn({
       cmd: 'jsx',
-      args: args
+      args: args,
+      opts: { stdio : [null, 1, 2] }
     }, callback);
-    jsx.stdout.pipe(process.stdout);
-    jsx.stderr.pipe(process.stderr);
   };
 };
