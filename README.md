@@ -173,6 +173,7 @@ Spcifies file extension. Default value is `'.js'` or `''` (for `--executable nod
 These extensions are used if `dest` is not specified or a directory.
 
 # ChangeLogs
+2013/10/02 v0.1.2 Fix multi src bug (Thanks to shibukawa san).
 
 2013/10/02 v0.1.1 enable ext option (Thanks to shibukawa san).
 
