@@ -17,7 +17,14 @@ module.exports = function(grunt) {
         }
       });
 
-      existFiles.map(function(filepath) {
+      var resultcode = true;
+      existFiles.push(null); // Sentinel
+      grunt.util.async.forEachSeries(existFiles, function(filepath, next) {
+        if (filepath === null)
+        {
+          done(resultcode);
+          return;
+        }
         compileJsx(
           filepath,
           {
@@ -43,7 +50,8 @@ module.exports = function(grunt) {
             if (!error) {
               grunt.log.ok();
             }
-            done(!code);
+            resultcode = !code && resultcode;
+            next();
           });
       });
     });
