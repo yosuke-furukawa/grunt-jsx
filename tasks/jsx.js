@@ -20,8 +20,7 @@ module.exports = function(grunt) {
       var resultcode = true;
       existFiles.push(null); // Sentinel
       grunt.util.async.forEachSeries(existFiles, function(filepath, next) {
-        if (filepath === null)
-        {
+        if (filepath === null) {
           done(resultcode);
           return;
         }
@@ -59,16 +58,13 @@ module.exports = function(grunt) {
 
   var changeExt = function (file, ext, opts) {
     var output = file;
-    if (file.lastIndexOf('.') !== -1)
-    {
+    if (file.lastIndexOf('.') !== -1) {
       output = file.slice(0, file.lastIndexOf('.'));
     }
-    if (ext)
-    {
+    if (ext) {
       output = output + ext;
     }
-    else if (!opts.executable || opts.executable !== 'node')
-    {
+    else if (!opts.executable || opts.executable !== 'node') {
       output = output + '.js';
     }
     return output;
@@ -91,13 +87,11 @@ module.exports = function(grunt) {
         //need output
         opts.output = file.replace(output_rule.regexp, output_rule.replace);
       }
-      else
-      {
+      else {
         opts.output = changeExt(file, ext, opts);
       }
     }
-    else if (grunt.file.isDir(opts.output))
-    {
+    else if (grunt.file.isDir(opts.output)) {
       opts.output = changeExt(path.resolve(opts.output, file.slice(file.lastIndexOf('/') + 1)), ext, opts);
     }
 
@@ -122,7 +116,7 @@ module.exports = function(grunt) {
     var jsx = grunt.util.spawn({
       cmd: 'jsx',
       args: args,
-      opts: { stdio : [null, 1, 2] }
+      opts: { stdio : ['ignore', process.stdout, process.stderr] }
     }, callback);
   };
 };
