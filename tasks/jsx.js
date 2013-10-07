@@ -87,11 +87,11 @@ module.exports = function(grunt) {
         //need output
         opts.output = file.replace(output_rule.regexp, output_rule.replace);
       }
-      else {
+      else if (!opts.test) {
         opts.output = changeExt(file, ext, opts);
       }
     }
-    else if (grunt.file.isDir(opts.output)) {
+    else if (grunt.file.isDir(opts.output) && !opts.test) {
       opts.output = changeExt(path.resolve(opts.output, file.slice(file.lastIndexOf('/') + 1)), ext, opts);
     }
 
