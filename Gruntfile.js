@@ -12,8 +12,11 @@ module.exports = function(grunt) {
       gruntfile: {
         src: 'Gruntfile.js'
       },
-      jsx: {
+      task: {
         src: 'tasks/jsx.js'
+      },
+      core: {
+        src: 'lib/jsx.js'
       }
     },
     watch: {
@@ -34,6 +37,9 @@ module.exports = function(grunt) {
         actuals: ['tmp/*.js', 'tmp/template/fixtures/template.jsx.html'],
         expected: ['fixtures/expected/*.js', 'fixtures/expected/template/fixtures/template.jsx.html']
       }
+    },
+    unittest: {
+      core: {}
     },
     jsx: {
       client: {
@@ -148,6 +154,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task.
-  grunt.registerTask('test', ['clean', 'jsx', 'checkfile']);
+  grunt.registerTask('test', ['unittest', 'clean', 'jsx', 'checkfile']);
   grunt.registerTask('default', ['jshint', 'watch']);
 };
