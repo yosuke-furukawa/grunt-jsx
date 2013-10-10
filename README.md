@@ -173,6 +173,8 @@ Spcifies file extension. Default value is `'.js'` or `''` (for `--executable nod
 These extensions are used if `dest` is not specified or a directory.
 
 # ChangeLogs
+2013/10/11 v0.1.4 Fix extension bug (Thanks to shibukawa san).
+
 2013/10/03 v0.1.3 Support jsx color (Thanks to shibukawa san).
 
 2013/10/02 v0.1.2 Fix multi src bug (Thanks to shibukawa san).
