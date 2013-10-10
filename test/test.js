@@ -1,8 +1,10 @@
 var expect = require('expect.js');
+var jsx = require('../lib/jsx.js');
 
 module.exports = function(grunt) {
   'use strict';
   var _ = grunt.util._;
+
   function assertFileEquality(pathToActual, pathToExpected) {
     var actual = grunt.file.read(pathToActual).replace(/\/\/.+\n/g, "");
     // remove error message,
@@ -16,6 +18,7 @@ module.exports = function(grunt) {
     console.log(pathToActual, pathToExpected);
     expect(actual).to.eql(expected);
   }
+
   grunt.registerMultiTask('checkfile', 'check equality', function() { 
     var testConfig = grunt.config('checkfile');
     var actuals = grunt.file.expand(testConfig.test.actuals);
@@ -24,5 +27,25 @@ module.exports = function(grunt) {
     for (var i=0; i<expected.length; i++) {
       assertFileEquality(actuals[i], expected[i]);
     }
+  });
+
+  grunt.registerMultiTask('unittest', 'unit test for grunt.jsx', function() {
+    expect(jsx.changeExt('test.jsx', {ext: '.jsfl'})).to.be('test.jsfl');
+    expect(jsx.changeExt('test.jsx', {executable: 'node'})).to.be('test');
+    expect(jsx.changeExt('test.jsx', {executable: 'web'})).to.be('test.js');
+    expect(jsx.changeExt('test.jsx', {executable: undefined})).to.be('test.js');
+    expect(jsx.changeExt('test.jsx', {test: true})).to.be(undefined);
+
+    function trueFunc() { return true; }
+    function falseFunc() { return true; }
+
+    var args = jsx.finalizeJsxOption(grunt, 'dir/test.jsx', {}, trueFunc); // is dir = true
+    expect(args.indexOf('dir/test.js')).not.to.be(-1);
+
+    var args = jsx.finalizeJsxOption(grunt, 'dir/test.jsx', {test: true}, trueFunc); // is dir = true
+    expect(args.indexOf('--output')).to.be(-1);
+
+    var args = jsx.finalizeJsxOption(grunt, 'dir/test.jsx', {executable: 'node'}, trueFunc); // is dir = true
+    expect(args.indexOf('dir/test')).not.to.be(-1);
   });
 };
