@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     expect(actual).to.eql(expected);
   }
 
-  grunt.registerMultiTask('checkfile', 'check equality', function() { 
+  grunt.registerMultiTask('checkfile', 'check equality', function() {
     var testConfig = grunt.config('checkfile');
     var actuals = grunt.file.expand(testConfig.test.actuals);
     var expected = grunt.file.expand(testConfig.test.expected);
@@ -47,5 +47,12 @@ module.exports = function(grunt) {
 
     var args = jsx.finalizeJsxOption(grunt, 'dir/test.jsx', {executable: 'node'}, trueFunc); // is dir = true
     expect(args.indexOf('dir/test')).not.to.be(-1);
+
+    // Linker Option Test
+    var jsxArgs = jsx.finalizeJsxOption(grunt, 'dir/test.jsx', {output: 'dir/test.js', linker: 'commonjs-lib'}, falseFunc);
+    var linkerArgs = jsx.finalizeLinkerOption(grunt, jsxArgs, {linker: 'commonjs-lib'}, falseFunc);
+    expect(jsxArgs.indexOf('dir/test.js')).to.be(-1); // output file is replaced to temp file
+    expect(jsxArgs.indexOf(linkerArgs.temp.path)).not.to.be(-1);
+    expect(linkerArgs.args.indexOf('dir/test.js')).to.be(-1); // output file is replaced to temp file
   });
 };
