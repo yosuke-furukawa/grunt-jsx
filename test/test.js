@@ -39,13 +39,21 @@ module.exports = function(grunt) {
     function trueFunc() { return true; }
     function falseFunc() { return true; }
 
+    // automatic extesion
     var args = jsx.finalizeJsxOption(grunt, 'dir/test.jsx', {}, trueFunc); // is dir = true
     expect(args.indexOf('dir/test.js')).not.to.be(-1);
 
+    // test doesn't export file
     var args = jsx.finalizeJsxOption(grunt, 'dir/test.jsx', {test: true}, trueFunc); // is dir = true
     expect(args.indexOf('--output')).to.be(-1);
 
+    // node doens't have extension
     var args = jsx.finalizeJsxOption(grunt, 'dir/test.jsx', {executable: 'node'}, trueFunc); // is dir = true
     expect(args.indexOf('dir/test')).not.to.be(-1);
+
+    // Expand add-search-path
+    var args = jsx.finalizeJsxOption(grunt, 'dir/test.jsx', {"add-search-path": 'test/test*'}, falseFunc); // is dir = true
+    expect(args.indexOf('test/testDir1')).not.to.be(-1);
+    expect(args.indexOf('test/testDir2')).not.to.be(-1);
   });
 };
