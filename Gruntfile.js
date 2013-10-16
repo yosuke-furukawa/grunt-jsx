@@ -142,6 +142,11 @@ module.exports = function(grunt) {
         src: 'fixtures/hello.jsx',
         dest: 'tmp/',
         ext: '.jsfl'
+      },
+      linker: {
+        src: 'fixtures/library.jsx',
+        dest: 'tmp/library.js',
+        linker: 'commonjs-lib'
       }
     }
   });

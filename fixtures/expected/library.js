@@ -100,7 +100,7 @@ JSX.resetProfileResults = function () {
 		throw new Error("profiler has not been turned on");
 	return $__jsx_profiler.resetResults();
 };
-JSX.DEBUG = false;
+JSX.DEBUG = true;
 function StopIteration() {
 	Error.call(this);
 	this.name = "StopIteration";
@@ -108,27 +108,15 @@ function StopIteration() {
 };
 
 $__jsx_extend([StopIteration], Error);
-function _Main() {
+function Library() {
 };
 
-$__jsx_extend([_Main], Object);
-function _Main$main$AS(args) {
-	var i;
-	for (i = 1; i <= 100; ++ i) {
-		if (i % 15 === 0) {
-			console.log("FizzBuzz");
-		} else if (i % 3 === 0) {
-			console.log("Fizz");
-		} else if (i % 5 === 0) {
-			console.log("Buzz");
-		} else {
-			console.log(i);
-		}
-	}
+$__jsx_extend([Library], Object);
+Library.prototype.calcFib$I = function (n) {
+	return 10;
 };
 
-_Main.main = _Main$main$AS;
-_Main.main$AS = _Main$main$AS;
+Library.prototype.calcFib = Library.prototype.calcFib$I;
 
 
 var $__jsx_classMap = {
@@ -136,11 +124,13 @@ var $__jsx_classMap = {
 		StopIteration: StopIteration,
 		StopIteration$: StopIteration
 	},
-	"fixtures/fizzbuzz.jsx": {
-		_Main: _Main,
-		_Main$: _Main
+	"fixtures/library.jsx": {
+		Library: Library,
+		Library$: Library
 	}
 };
 
 
 })(JSX);
+
+exports.Library = JSX.require("fixtures/library.jsx").Library;

@@ -14,7 +14,9 @@
     "compiler"
   ],
   "dependencies": {
-    "jsx": "~0.9.x"
+    "jsx": "~0.9.x",
+    "jsx-linker": "~0.1.x",
+    "temporary": "0.0.7"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

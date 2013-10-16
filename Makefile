@@ -20,3 +20,5 @@ fixture:
 	jsx --output fixtures/expected/hello2.js fixtures/hello2.jsx
 	# ext test
 	jsx --output fixtures/expected/hello.jsfl fixtures/hello.jsx
+	# linker test
+	jsx fixtures/library.jsx | node_modules/.bin/jsx-linker -t commonjs-lib -s -o fixtures/expected/library.js

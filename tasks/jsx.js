@@ -1,10 +1,9 @@
 module.exports = function(grunt) {
   'use strict';
-  var finalizeJsxOption = require('../lib/jsx.js').finalizeJsxOption;
+  var JSX = require('../lib/jsx.js');
   var _ = grunt.util._;
 
   grunt.registerMultiTask('jsx', 'Compile JSX file to JavaScript', function() {
-      try {
     var done = this.async();
     this.files.forEach(function(file) {
       if (file.src.length < 1) {
@@ -18,11 +17,17 @@ module.exports = function(grunt) {
           return true;
         }
       });
+      if (existFiles.length === 0) {
+        return grunt.log.error('Source file is undefiend.');
+      }
 
       var resultcode = true;
       existFiles.push(null); // Sentinel
       grunt.util.async.forEachSeries(existFiles, function(filepath, next) {
         if (filepath === null) {
+          if (resultcode) {
+            grunt.log.ok();
+          }
           done(resultcode);
           return;
         }
@@ -45,23 +50,14 @@ module.exports = function(grunt) {
           output_rule : file.output_rule,
           ext: file.ext
         };
-        var args = finalizeJsxOption(grunt, filepath, opts, grunt.file.isDir);
-        grunt.log.write('jsx ');
-        grunt.log.writeln(args.join(" "));
-        grunt.util.spawn({
-          cmd: 'jsx',
-          args: args,
-          opts: { stdio : ['ignore', process.stdout, process.stderr] }
-        }, function (error, result, code) {
-          if (!error) {
-            grunt.log.ok();
-          }
+        var jsxArgs = JSX.finalizeJsxOption(grunt, filepath, opts, grunt.file.isDir);
+        var linkerArgs = JSX.finalizeLinkerOption(grunt, jsxArgs, file, grunt.file.isDir);
+        JSX.run(grunt, jsxArgs, linkerArgs, function (error, code) {
           resultcode = !code && resultcode;
           next();
         });
       });
     });
-      } catch (e) { console.log(e.stack); }
   });
 };
 
