@@ -60,7 +60,7 @@ module.exports = function(grunt) {
       add_search_path: {
         src: 'fixtures/import.jsx',
         dest: 'tmp/import.jsx.js',
-        add_search_path: 'fixtures/',
+        add_search_path: 'fixtures/'
       },
       add_search_path_arr: {
         src: 'fixtures/import.jsx',
