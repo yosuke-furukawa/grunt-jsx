@@ -1,4 +1,5 @@
 image: dockerfile/nodejs
 script:
+    - npm install grunt-cli jsx -g
     - npm install
     - npm test
