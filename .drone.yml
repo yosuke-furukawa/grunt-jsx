@@ -1,4 +1,4 @@
-image: bradrydzewski/node:0.10
+image: dockerfile/nodejs
 script:
     - npm install
     - npm test
