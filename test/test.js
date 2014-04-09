@@ -35,6 +35,19 @@ module.exports = function(grunt) {
     expect(jsx.changeExt('test.jsx', {executable: 'web'})).to.be('test.js');
     expect(jsx.changeExt('test.jsx', {executable: undefined})).to.be('test.js');
     expect(jsx.changeExt('test.jsx', {test: true})).to.be(undefined);
+    expect(jsx.outputRule('test01.jsx', {
+        regexp: /test(.*).jsx/,
+        replace: '$1.js'})).to.be('01.js');
+    var error = false;
+    try {
+        jsx.outputRule('test.jsx', {
+            regexp: /fixtures(.*).jsx/,
+            replace: '$1.js',
+        });
+        error = true;
+    } catch(e) {
+    }
+    expect(error).to.be.ok();
 
     function trueFunc() { return true; }
     function falseFunc() { return true; }
