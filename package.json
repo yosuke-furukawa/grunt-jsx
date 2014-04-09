@@ -1,6 +1,6 @@
 {
   "name": "grunt-jsx",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Gruntfile for JSX",
   "main": "Gruntfile.js",
   "scripts": {
