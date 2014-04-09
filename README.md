@@ -173,6 +173,8 @@ Spcifies file extension. Default value is `'.js'` or `''` (for `--executable nod
 These extensions are used if `dest` is not specified or a directory.
 
 # ChangeLogs
+2014/04/09 v0.1.7 Fix Windows bugs (Thanks to shibukawa san).
+
 2013/10/17 v0.1.5 Add JSX linker option (Thanks to shibukawa san).
 
 2013/10/11 v0.1.4 Fix extension bug (Thanks to shibukawa san).
