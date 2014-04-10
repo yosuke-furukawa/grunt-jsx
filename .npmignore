@@ -1,0 +1,10 @@
+fixtures/
+fixtures/
+.travis.yml
+.drone.yml
+test/
+Makefile
+Gruntfile.js
+.jshintrc
+.npmignore
+*.tgz
