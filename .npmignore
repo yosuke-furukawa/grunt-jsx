@@ -1,5 +1,5 @@
 fixtures/
-fixtures/
+fixtures2/
 .travis.yml
 .drone.yml
 test/
