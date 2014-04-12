@@ -32,12 +32,6 @@ module.exports = function(grunt) {
     clean: {
       tests: ['tmp/']
     },
-    checkfile: {
-      test: {
-        actuals: ['tmp/*.js', 'tmp/template/fixtures/template.jsx.html'],
-        expected: ['fixtures/expected/*.js', 'fixtures/expected/template/fixtures/template.jsx.html']
-      }
-    },
     unittest: {
       core: {}
     },
@@ -159,6 +153,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task.
-  grunt.registerTask('test', ['unittest', 'clean', 'jsx', 'checkfile']);
+  grunt.registerTask('test', ['unittest', 'clean', 'jsx']);
   grunt.registerTask('default', ['jshint', 'watch']);
 };
